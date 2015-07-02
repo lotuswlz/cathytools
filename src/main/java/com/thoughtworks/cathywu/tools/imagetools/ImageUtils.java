@@ -56,8 +56,12 @@ public class ImageUtils {
         if (!directory.exists() || !directory.isDirectory()) {
             throw new RuntimeException("No such a directory: " + imageFolder);
         }
-        if (!toDirectory.exists() || !toDirectory.isDirectory()) {
-            throw new RuntimeException("No such a directory: " + toDirectory);
+        if (toDirectory.exists() && !toDirectory.isDirectory()) {
+            throw new RuntimeException(toDirectory + " is not a directory");
+        } else if (!toDirectory.exists()) {
+            if (toDirectory.mkdirs()) {
+                throw new RuntimeException("Exception occurs while creating directory for \"" + toFolder + "\".");
+            }
         }
         File[] files = directory.listFiles(new FilenameFilter() {
             @Override
