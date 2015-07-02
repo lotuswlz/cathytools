@@ -8,6 +8,7 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.math.BigDecimal;
 
 /**
  * @author lzwu
@@ -19,10 +20,12 @@ public class ImageUtils {
 
     private int baseWidth;
     private int baseHeight;
+    private BigDecimal baseRate;
 
     private ImageUtils(int baseWidth, int baseHeight) throws IOException {
         this.baseWidth = baseWidth;
         this.baseHeight = baseHeight;
+        this.baseRate = new BigDecimal(this.baseWidth).divide(new BigDecimal(this.baseHeight)).setScale(2, BigDecimal.ROUND_HALF_UP);
     }
 
     public static ImageUtils createInstanceFor(int baseWidth, int baseHeight) throws IOException {
@@ -47,13 +50,41 @@ public class ImageUtils {
         return true;
     }
 
+    public void resizeImages(String imageFolder, String toFolder) {
+        File directory = new File(imageFolder);
+        File toDirectory = new File(toFolder);
+        if (!directory.exists() || !directory.isDirectory()) {
+            throw new RuntimeException("No such a directory: " + imageFolder);
+        }
+        if (!toDirectory.exists() || !toDirectory.isDirectory()) {
+            throw new RuntimeException("No such a directory: " + toDirectory);
+        }
+        File[] files = directory.listFiles(new FilenameFilter() {
+            @Override
+            public boolean accept(File dir, String name) {
+                String suffix = name.substring(name.lastIndexOf(".") + 1);
+                return suffix.matches("^(?i)(jpg|jpeg|png|gif)$");
+            }
+        });
+        for (File imageFile : files) {
+            boolean isSuccess = resizeImage(imageFile, toFolder);
+            if (!isSuccess) {
+                System.out.println("Failure: " + imageFile.getPath());
+            }
+        }
+        System.out.println("Complete");
+    }
+
     private ResizeHandler chooseCorrectHandler(Image image) {
         int width = image.getWidth(null);
         int height = image.getHeight(null);
-        if (width > height) {
+        BigDecimal currentRate = new BigDecimal(width).divide(new BigDecimal(height)).setScale(2, BigDecimal.ROUND_HALF_UP);
 
+        if (currentRate.compareTo(baseRate) > 0) { // turn thin, use handlerByWidth and use base width
+            return new ResizeByWidthHandler(this.baseWidth);
+        } else {
+            return new ResizeByHeightHandler(this.baseHeight);
         }
-        return null;
     }
 
     private File createNewImageFile(String name, String toPath) {
