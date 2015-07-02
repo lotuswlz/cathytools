@@ -3,6 +3,7 @@ package com.thoughtworks.cathywu.tools.imagetools;
 import java.io.IOException;
 
 /**
+ * This is an example for ImageUtils.
  * @author lzwu
  * @since 7/2/15
  */
