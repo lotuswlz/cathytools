@@ -1,6 +1,6 @@
 package com.thoughtworks.cathywu.tools.random.generator;
 
-import com.thoughtworks.cathywu.tools.random.exception.InvalidWeightException;
+import com.thoughtworks.cathywu.tools.random.exception.InvalidRateException;
 import com.thoughtworks.cathywu.tools.random.model.CustomizedRandomSeeds;
 
 import java.lang.reflect.InvocationTargetException;
@@ -12,7 +12,7 @@ import java.lang.reflect.Method;
  */
 public class CloneableTypeRandomGenerator<T extends Cloneable> extends CustomizedRandomGenerator<Cloneable> {
 
-    protected CloneableTypeRandomGenerator(CustomizedRandomSeeds<Cloneable> candidateItems) throws InvalidWeightException {
+    protected CloneableTypeRandomGenerator(CustomizedRandomSeeds<Cloneable> candidateItems) throws InvalidRateException {
         super(candidateItems);
     }
 

@@ -1,6 +1,6 @@
 package com.thoughtworks.cathywu.tools.random.model;
 
-import com.thoughtworks.cathywu.tools.random.exception.InvalidWeightException;
+import com.thoughtworks.cathywu.tools.random.exception.InvalidRateException;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -25,13 +25,13 @@ public class CustomizedRandomSeeds<T> {
         return candidateItems;
     }
 
-    public void validate() throws InvalidWeightException {
+    public void validate() throws InvalidRateException {
         double totalWeight = 0;
         for (CandidateItem candidateItem : candidateItems) {
             totalWeight += candidateItem.getRate();
         }
         if (new BigDecimal(totalWeight).setScale(3, BigDecimal.ROUND_HALF_UP).compareTo(BigDecimal.ONE) != 0) {
-            throw new InvalidWeightException("Total weight more than one");
+            throw new InvalidRateException("Total weight more than one");
         }
     }
 

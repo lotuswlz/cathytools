@@ -4,13 +4,13 @@ package com.thoughtworks.cathywu.tools.random.exception;
  * @author lzwu
  * @since 8/31/15
  */
-public class InvalidWeightException extends Exception {
+public class InvalidRateException extends Exception {
     /**
      * Constructs a new exception with {@code null} as its detail message.
      * The cause is not initialized, and may subsequently be initialized by a
      * call to {@link #initCause}.
      */
-    public InvalidWeightException() {
+    public InvalidRateException() {
     }
 
     /**
@@ -21,7 +21,7 @@ public class InvalidWeightException extends Exception {
      * @param message the detail message. The detail message is saved for
      *                later retrieval by the {@link #getMessage()} method.
      */
-    public InvalidWeightException(String message) {
+    public InvalidRateException(String message) {
         super(message);
     }
 
@@ -39,7 +39,7 @@ public class InvalidWeightException extends Exception {
      *                unknown.)
      * @since 1.4
      */
-    public InvalidWeightException(String message, Throwable cause) {
+    public InvalidRateException(String message, Throwable cause) {
         super(message, cause);
     }
 
@@ -57,7 +57,7 @@ public class InvalidWeightException extends Exception {
      *              unknown.)
      * @since 1.4
      */
-    public InvalidWeightException(Throwable cause) {
+    public InvalidRateException(Throwable cause) {
         super(cause);
     }
 
@@ -75,7 +75,7 @@ public class InvalidWeightException extends Exception {
      *                           be writable
      * @since 1.7
      */
-    public InvalidWeightException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+    public InvalidRateException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
 }

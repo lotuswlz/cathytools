@@ -1,6 +1,6 @@
 package com.thoughtworks.cathywu.tools.random.generator;
 
-import com.thoughtworks.cathywu.tools.random.exception.InvalidWeightException;
+import com.thoughtworks.cathywu.tools.random.exception.InvalidRateException;
 import com.thoughtworks.cathywu.tools.random.model.CustomizedRandomSeeds;
 
 import java.io.Serializable;
@@ -11,7 +11,7 @@ import java.io.Serializable;
  */
 public class BasicTypeRandomGenerator<T extends Serializable> extends CustomizedRandomGenerator<Serializable> {
 
-    protected BasicTypeRandomGenerator(CustomizedRandomSeeds<Serializable> candidateItems) throws InvalidWeightException {
+    protected BasicTypeRandomGenerator(CustomizedRandomSeeds<Serializable> candidateItems) throws InvalidRateException {
         super(candidateItems);
     }
 

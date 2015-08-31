@@ -1,6 +1,6 @@
 package com.thoughtworks.cathywu.tools.random;
 
-import com.thoughtworks.cathywu.tools.random.exception.InvalidWeightException;
+import com.thoughtworks.cathywu.tools.random.exception.InvalidRateException;
 import com.thoughtworks.cathywu.tools.random.generator.CustomizedRandomGenerator;
 import com.thoughtworks.cathywu.tools.random.model.CustomizedRandomSeeds;
 import org.junit.Test;
@@ -79,7 +79,7 @@ public class IntegrationTest {
         assertEquals(seeds.getCandidateItems().size(), textCounter.size());
     }
 
-    private <T extends Serializable> Map<T, Integer> generateItems(CustomizedRandomGenerator<T> generator, int size) throws InvalidWeightException {
+    private <T extends Serializable> Map<T, Integer> generateItems(CustomizedRandomGenerator<T> generator, int size) throws InvalidRateException {
         int times = 0;
         Map<T, Integer> counter = new HashMap<T, Integer>();
         while (times++ < size) {
