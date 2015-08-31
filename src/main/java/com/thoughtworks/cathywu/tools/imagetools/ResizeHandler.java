@@ -15,16 +15,16 @@ public abstract class ResizeHandler {
         this.baseLength = baseLength;
     }
 
-    public BufferedImage process(Image image) {
+    public BufferedImage process(Image image, int type) {
         Measurements measurements = calculate(image);
-        return resize(image, measurements);
+        return resize(image, measurements, type);
     }
 
-    protected abstract Measurements calculate(Image image);
-
-    private BufferedImage resize(Image image, Measurements measurements) {
-        BufferedImage bufferedImage = new BufferedImage(measurements.getWidth(), measurements.getHeight(), BufferedImage.TYPE_INT_RGB);
+    private BufferedImage resize(Image image, Measurements measurements, int type) {
+        BufferedImage bufferedImage = new BufferedImage(measurements.getWidth(), measurements.getHeight(), type);
         bufferedImage.getGraphics().drawImage(image, 0, 0, measurements.getWidth(), measurements.getHeight(), null);
         return bufferedImage;
     }
+
+    protected abstract Measurements calculate(Image image);
 }
