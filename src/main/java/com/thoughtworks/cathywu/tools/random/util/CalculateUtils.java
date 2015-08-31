@@ -61,12 +61,4 @@ public final class CalculateUtils {
         }
         return intValues;
     }
-
-    public static void main(String[] args) {
-        double[] rates = new double[]{0.13, 0.21, 0.56, 0.1};
-        int[] rateArray = CalculateUtils.enlargeToInteger(rates);
-        int gcd = CalculateUtils.calcGcd(rateArray);
-        rateArray = CalculateUtils.calcQuotient(rateArray, gcd);
-        System.out.println(CalculateUtils.sum(rateArray));
-    }
 }
